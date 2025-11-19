@@ -16,6 +16,7 @@
       body {
         font-family: system-ui, -apple-system, sans-serif;
         line-height: 1.6;
+        overflow-x: hidden;
       }
 
       /* Keyframe Animations */
@@ -31,7 +32,7 @@
       @keyframes fadeUp {
         from {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(40px);
         }
         to {
           opacity: 1;
@@ -53,7 +54,7 @@
       @keyframes slideInLeft {
         from {
           opacity: 0;
-          transform: translateX(-50px);
+          transform: translateX(-80px);
         }
         to {
           opacity: 1;
@@ -64,7 +65,7 @@
       @keyframes slideInRight {
         from {
           opacity: 0;
-          transform: translateX(50px);
+          transform: translateX(80px);
         }
         to {
           opacity: 1;
@@ -78,14 +79,14 @@
           transform: translateY(0px);
         }
         50% {
-          transform: translateY(-20px);
+          transform: translateY(-25px);
         }
       }
 
       @keyframes scaleIn {
         from {
           opacity: 0;
-          transform: scale(0.8);
+          transform: scale(0.7);
         }
         to {
           opacity: 1;
@@ -111,10 +112,10 @@
           transform: translate(0, 0) scale(1);
         }
         33% {
-          transform: translate(30px, -50px) scale(1.1);
+          transform: translate(40px, -60px) scale(1.15);
         }
         66% {
-          transform: translate(-20px, 20px) scale(0.9);
+          transform: translate(-30px, 30px) scale(0.85);
         }
       }
 
@@ -124,7 +125,7 @@
           transform: translateY(0);
         }
         50% {
-          transform: translateY(-10px);
+          transform: translateY(-15px);
         }
       }
 
@@ -141,64 +142,111 @@
         0%,
         100% {
           opacity: 1;
+          transform: scale(1);
         }
         50% {
-          opacity: 0.5;
+          opacity: 0.7;
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes wiggle {
+        0%, 100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(-5deg);
+        }
+        75% {
+          transform: rotate(5deg);
+        }
+      }
+
+      @keyframes slideUpFade {
+        from {
+          opacity: 0;
+          transform: translateY(60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes zoomIn {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes rotateIn {
+        from {
+          opacity: 0;
+          transform: rotate(-180deg) scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: rotate(0deg) scale(1);
         }
       }
 
       /* Additional animation utilities for enhanced motion */
       .reveal {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
       }
       .reveal.in-view {
-        animation: fadeUp 0.9s ease-out forwards;
+        animation: fadeUp 1s ease-out forwards;
       }
 
       .card-tilt {
-        transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1),
-          box-shadow 0.45s;
+        transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1),
+          box-shadow 0.5s ease;
         transform-origin: center;
       }
       .card-tilt:hover {
-        transform: perspective(1000px) rotateX(6deg) rotateY(-6deg) scale(1.03);
-        box-shadow: 0 30px 40px rgba(0, 0, 0, 0.12);
+        transform: perspective(1200px) rotateX(8deg) rotateY(-8deg) scale(1.08) translateY(-10px);
+        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.2);
       }
 
       .cta-pulse {
-        animation: pulse 2.2s ease-in-out infinite;
+        animation: pulse 2s ease-in-out infinite;
       }
       .cta-pulse:hover {
-        animation-play-state: paused;
+        animation: bounce 0.6s ease infinite;
       }
 
       /* Staggered reveal for grid items (services & solutions) */
       #services .grid > div.reveal,
       #solutions .grid > div.reveal {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(40px) scale(0.9);
       }
       #services .grid > div.reveal.in-view,
       #solutions .grid > div.reveal.in-view {
-        animation: fadeUp 0.9s ease-out forwards;
+        animation: slideUpFade 1s ease-out forwards;
       }
       #services .grid > div.reveal.in-view:nth-child(1),
       #solutions .grid > div.reveal.in-view:nth-child(1) {
-        animation-delay: 0.15s;
+        animation-delay: 0.2s;
       }
       #services .grid > div.reveal.in-view:nth-child(2),
       #solutions .grid > div.reveal.in-view:nth-child(2) {
-        animation-delay: 0.3s;
+        animation-delay: 0.4s;
       }
       #services .grid > div.reveal.in-view:nth-child(3),
       #solutions .grid > div.reveal.in-view:nth-child(3) {
-        animation-delay: 0.45s;
+        animation-delay: 0.6s;
       }
 
       /* subtle hero logo drift (longer float) */
       .hero-logo {
-        animation: float 6s ease-in-out infinite;
+        animation: float 5s ease-in-out infinite;
       }
 
       /* Hero subtext font (Merriweather) */
@@ -219,47 +267,56 @@
         bottom: -6px;
         height: 3px;
         width: 100%;
-        background: rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.15);
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform 0.25s ease;
+        transition: transform 0.3s ease;
       }
       .nav-link:hover::after {
         transform: scaleX(1);
-        background: rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.4);
       }
 
       /* Animation Classes */
       .animate-fadeIn {
-        animation: fadeIn 1s ease-in-out;
+        animation: fadeIn 1.5s ease-in-out;
       }
       .animate-fadeInSlow {
-        animation: fadeIn 2s ease-in-out;
+        animation: fadeIn 2.5s ease-in-out;
       }
       .animate-fadeUp {
-        animation: fadeUp 1s ease-out;
+        animation: fadeUp 1.2s ease-out;
       }
       .animate-slideDown {
-        animation: slideDown 1s ease-out;
+        animation: slideDown 1.2s ease-out;
       }
       .animate-slideInLeft {
-        animation: slideInLeft 1s ease-out;
+        animation: slideInLeft 1.2s ease-out;
       }
       .animate-slideInRight {
-        animation: slideInRight 1s ease-out;
+        animation: slideInRight 1.2s ease-out;
       }
       .animate-float {
-        animation: float 3s ease-in-out infinite;
+        animation: float 4s ease-in-out infinite;
       }
       .animate-scaleIn {
-        animation: scaleIn 0.8s ease-out;
+        animation: scaleIn 1s ease-out;
+      }
+      .animate-zoomIn {
+        animation: zoomIn 0.8s ease-out;
+      }
+      .animate-rotateIn {
+        animation: rotateIn 1s ease-out;
       }
       .animate-gradientShift {
-        animation: gradientShift 15s ease infinite;
-        background-size: 200% 200%;
+        animation: gradientShift 12s ease infinite;
+        background-size: 300% 300%;
       }
       .animate-blob {
-        animation: blob 7s infinite;
+        animation: blob 8s infinite;
+      }
+      .animate-wiggle {
+        animation: wiggle 2s ease-in-out infinite;
       }
 
       .animation-delay-200 {
@@ -267,6 +324,9 @@
       }
       .animation-delay-400 {
         animation-delay: 0.4s;
+      }
+      .animation-delay-600 {
+        animation-delay: 0.6s;
       }
       .animation-delay-2000 {
         animation-delay: 2s;
@@ -279,29 +339,70 @@
 
       /* Hover Effects */
       .card-hover {
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .card-hover:hover {
-        transform: translateY(-8px) scale(1.05);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transform: translateY(-12px) scale(1.06);
+        box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15),
+          0 15px 15px -5px rgba(0, 0, 0, 0.08);
       }
 
       .icon-hover {
-        transition: transform 0.3s ease;
+        transition: transform 0.4s ease;
+        display: inline-block;
       }
 
       .card-hover:hover .icon-bounce {
-        animation: bounce 0.6s ease infinite;
+        animation: bounce 0.7s ease infinite;
       }
 
       .card-hover:hover .icon-spin {
-        animation: spin 1s ease infinite;
+        animation: spin 1.5s linear infinite;
       }
 
       .card-hover:hover .icon-pulse {
-        animation: pulse 1s ease infinite;
+        animation: pulse 1.2s ease infinite;
+      }
+
+      .card-hover:hover .icon-wiggle {
+        animation: wiggle 1s ease infinite;
+      }
+
+      /* Parallax blobs */
+      .parallax-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.3;
+        animation: blob 10s infinite ease-in-out;
+      }
+
+      /* Section title animation */
+      .section-title {
+        position: relative;
+        display: inline-block;
+      }
+      .section-title::before {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #1e3a8a, #7c3aed);
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: slideInLeft 0.8s ease-out 0.3s forwards;
+      }
+
+      /* Contact info cards animation */
+      .contact-card {
+        transition: all 0.4s ease;
+      }
+      .contact-card:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 15px 25px rgba(30, 58, 138, 0.15);
       }
 
       /* Test to ensure styles are loading */
@@ -312,32 +413,32 @@
   </head>
   <body class="bg-gray-100 text-gray-800 test-body">
     <header
-      class="bg-blue-900 text-white sticky top-0 z-50 shadow-md backdrop-blur-sm bg-opacity-95 test-color"
+      class="bg-blue-900 text-white sticky top-0 z-50 shadow-lg backdrop-blur-md bg-opacity-95 test-color"
     >
       <nav class="flex justify-center gap-8 py-4 text-lg font-semibold">
         <a
           href="#home"
-          class="nav-link hover:text-blue-300 transition transform hover:scale-110 hover:-translate-y-1 duration-300"
+          class="nav-link hover:text-blue-300 transition transform hover:scale-125 hover:-translate-y-2 duration-300"
           >Home</a
         >
         <a
           href="#services"
-          class="nav-link hover:text-blue-300 transition transform hover:scale-110 hover:-translate-y-1 duration-300"
+          class="nav-link hover:text-blue-300 transition transform hover:scale-125 hover:-translate-y-2 duration-300"
           >Services</a
         >
         <a
           href="#solutions"
-          class="nav-link hover:text-blue-300 transition transform hover:scale-110 hover:-translate-y-1 duration-300"
+          class="nav-link hover:text-blue-300 transition transform hover:scale-125 hover:-translate-y-2 duration-300"
           >Solutions</a
         >
         <a
           href="#about"
-          class="nav-link hover:text-blue-300 transition transform hover:scale-110 hover:-translate-y-1 duration-300"
+          class="nav-link hover:text-blue-300 transition transform hover:scale-125 hover:-translate-y-2 duration-300"
           >About Us</a
         >
         <a
           href="#contact"
-          class="nav-link hover:text-blue-300 transition transform hover:scale-110 hover:-translate-y-1 duration-300"
+          class="nav-link hover:text-blue-300 transition transform hover:scale-125 hover:-translate-y-2 duration-300"
           >Contact</a
         >
       </nav>
@@ -354,114 +455,128 @@
       <div
         class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 opacity-80 animate-gradientShift"
       ></div>
+      
+      <!-- Animated floating blobs -->
+      <div class="parallax-blob w-96 h-96 bg-blue-400 top-20 -left-20"></div>
+      <div class="parallax-blob w-80 h-80 bg-purple-400 bottom-20 -right-20 animation-delay-2000"></div>
+      <div class="parallax-blob w-64 h-64 bg-indigo-400 top-1/2 left-1/2 animation-delay-400"></div>
+      
       <div
-        class="bg-black bg-opacity-60 p-10 rounded-xl relative z-10 animate-scaleIn backdrop-blur-sm"
+        class="bg-black bg-opacity-60 p-10 rounded-xl relative z-10 animate-zoomIn backdrop-blur-sm"
       >
         <img
           src="ay3bluelogo.png"
           alt="AY3Services Circuit Logo"
-          class="w-96 mx-auto mb-6 animate-float hero-logo"
+          class="w-96 mx-auto mb-6 hero-logo"
           style="max-width: 384px"
         />
         <h1 class="text-5xl font-bold mb-4 animate-slideDown">AY3Services</h1>
-        <p class="text-xl max-w-2xl animate-fadeInSlow hero-subtext">
+        <p class="text-xl max-w-2xl animate-fadeInSlow hero-subtext animation-delay-400">
           Your trusted partner in IT services, hardware distribution, and
           technology solutions.
         </p>
-        <div class="mt-8">
+        <div class="mt-8 animate-fadeUp animation-delay-600">
           <a
             href="#about"
-            class="inline-block bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-semibold transition transform hover:scale-105 hover:shadow-2xl duration-300 cta-pulse"
+            class="inline-block bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-semibold transition transform hover:scale-110 hover:shadow-2xl duration-300 cta-pulse"
             >Learn More</a
           >
         </div>
       </div>
     </section>
 
-    <section id="services" class="px-8 py-20 bg-white reveal">
-      <h2 class="text-4xl font-bold text-blue-900 mb-10 animate-fadeIn">
+    <section id="services" class="px-8 py-20 bg-white reveal relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="parallax-blob w-72 h-72 bg-blue-100 -top-20 -right-20"></div>
+      <div class="parallax-blob w-56 h-56 bg-purple-100 bottom-10 -left-10 animation-delay-2000"></div>
+      
+      <h2 class="text-4xl font-bold text-blue-900 mb-10 animate-fadeIn section-title relative z-10">
         Our Services
       </h2>
 
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-8 relative z-10">
         <div
-          class="p-6 bg-gray-50 rounded-xl shadow card-hover card-tilt reveal group cursor-pointer"
+          class="p-8 bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl shadow-lg card-hover card-tilt reveal group cursor-pointer"
         >
-          <div class="text-5xl mb-4 icon-hover icon-bounce">💻</div>
-          <h3 class="text-2xl font-semibold mb-2 text-blue-700">
+          <div class="text-6xl mb-4 icon-hover icon-bounce">💻</div>
+          <h3 class="text-2xl font-semibold mb-3 text-blue-700">
             IT Consulting
           </h3>
-          <p>Professional IT support, Infrastructure planning, Business Analytics Services & Business Process Mapping Services.</p>
+          <p class="text-gray-600">Professional IT support, Infrastructure planning, Business Analytics Services & Business Process Mapping Services.</p>
         </div>
         <div
-          class="p-6 bg-gray-50 rounded-xl shadow card-hover card-tilt reveal group cursor-pointer"
+          class="p-8 bg-gradient-to-br from-gray-50 to-indigo-50 rounded-2xl shadow-lg card-hover card-tilt reveal group cursor-pointer"
         >
-          <div class="text-5xl mb-4 icon-hover icon-bounce">🖥️</div>
-          <h3 class="text-2xl font-semibold mb-2 text-blue-700">
+          <div class="text-6xl mb-4 icon-hover icon-wiggle">🖥️</div>
+          <h3 class="text-2xl font-semibold mb-3 text-blue-700">
             Hardware Sales
           </h3>
-          <p>Quality computer systems, accessories, and components.</p>
+          <p class="text-gray-600">Quality computer systems, accessories, and components.</p>
         </div>
         <div
-          class="p-6 bg-gray-50 rounded-xl shadow card-hover card-tilt reveal group cursor-pointer"
+          class="p-8 bg-gradient-to-br from-gray-50 to-purple-50 rounded-2xl shadow-lg card-hover card-tilt reveal group cursor-pointer"
         >
-          <div class="text-5xl mb-4 icon-hover icon-bounce">🔧</div>
-          <h3 class="text-2xl font-semibold mb-2 text-blue-700">
+          <div class="text-6xl mb-4 icon-hover icon-spin">🔧</div>
+          <h3 class="text-2xl font-semibold mb-3 text-blue-700">
             Hardware Repairs
           </h3>
-          <p>Fast and affordable repair services for all devices.</p>
+          <p class="text-gray-600">Fast and affordable repair services for all devices.</p>
         </div>
       </div>
     </section>
 
-    <section id="solutions" class="px-8 py-20 reveal">
-      <h2 class="text-4xl font-bold text-blue-900 mb-10 animate-fadeIn">
+    <section id="solutions" class="px-8 py-20 bg-gradient-to-b from-gray-50 to-white reveal relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="parallax-blob w-64 h-64 bg-indigo-100 top-20 -left-20 animation-delay-400"></div>
+      <div class="parallax-blob w-80 h-80 bg-purple-100 -bottom-20 -right-20"></div>
+      
+      <h2 class="text-4xl font-bold text-blue-900 mb-10 animate-fadeIn section-title relative z-10">
         Our Solutions
       </h2>
 
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-8 relative z-10">
         <div
-          class="p-6 bg-gray-50 rounded-xl shadow card-hover card-tilt reveal group cursor-pointer"
+          class="p-8 bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-lg card-hover card-tilt reveal group cursor-pointer"
         >
-          <div class="text-5xl mb-4 icon-hover icon-spin">💿</div>
-          <h3 class="text-2xl font-semibold mb-2 text-blue-700">
+          <div class="text-6xl mb-4 icon-hover icon-spin">💿</div>
+          <h3 class="text-2xl font-semibold mb-3 text-blue-700">
             Software Distribution
           </h3>
-          <p>Reliable supply of licensed third‑party software.</p>
+          <p class="text-gray-600">Reliable supply of licensed third‑party software.</p>
         </div>
         <div
-          class="p-6 bg-gray-50 rounded-xl shadow card-hover card-tilt reveal group cursor-pointer"
+          class="p-8 bg-gradient-to-br from-white to-indigo-50 rounded-2xl shadow-lg card-hover card-tilt reveal group cursor-pointer"
         >
-          <div class="text-5xl mb-4 icon-hover icon-pulse">🌐</div>
-          <h3 class="text-2xl font-semibold mb-2 text-blue-700">
+          <div class="text-6xl mb-4 icon-hover icon-pulse">🌐</div>
+          <h3 class="text-2xl font-semibold mb-3 text-blue-700">
             Web Applications
           </h3>
-          <p>Deployment of scalable and secure web‑based systems.</p>
+          <p class="text-gray-600">Deployment of scalable and secure web‑based systems.</p>
         </div>
         <div
-          class="p-6 bg-gray-50 rounded-xl shadow card-hover card-tilt reveal group cursor-pointer"
+          class="p-8 bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-lg card-hover card-tilt reveal group cursor-pointer"
         >
-          <div class="text-5xl mb-4 icon-hover icon-bounce">🏢</div>
-          <h3 class="text-2xl font-semibold mb-2 text-blue-700">
+          <div class="text-6xl mb-4 icon-hover icon-bounce">🏢</div>
+          <h3 class="text-2xl font-semibold mb-3 text-blue-700">
             Enterprise Solutions
           </h3>
-          <p>Custom IT solutions to move your business forward.</p>
+          <p class="text-gray-600">Custom IT solutions to move your business forward.</p>
         </div>
       </div>
     </section>
 
-    <section id="about" class="px-8 py-20 relative overflow-hidden reveal">
+    <section id="about" class="px-8 py-20 bg-white relative overflow-hidden reveal">
       <div
-        class="absolute top-0 right-0 w-64 h-64 bg-blue-200 rounded-full filter blur-3xl opacity-20 animate-blob"
+        class="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full filter blur-3xl opacity-25 animate-blob"
       ></div>
       <div
-        class="absolute bottom-0 left-0 w-64 h-64 bg-purple-200 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-2000"
+        class="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full filter blur-3xl opacity-25 animate-blob animation-delay-2000"
       ></div>
-      <div class="relative z-10">
-        <h2 class="text-4xl font-bold text-blue-900 mb-6 animate-slideInLeft">
+      <div class="relative z-10 max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold text-blue-900 mb-8 animate-slideInLeft section-title">
           About Us
         </h2>
-        <p class="text-lg leading-relaxed max-w-3xl animate-slideInRight">
+        <p class="text-xl leading-relaxed animate-slideInRight animation-delay-200 text-gray-700">
           AY3 Services Ltd is a leading Information Technology company
           specializing in IT services, hardware sales & repairs, import/export
           of hardware components, and distribution of licensed software and
@@ -470,52 +585,43 @@
       </div>
     </section>
 
-    <section id="contact" class="px-8 py-20 bg-white animate-fadeIn reveal">
-      <h2 class="text-4xl font-bold text-blue-900 mb-6">Contact Us</h2>
+    <section id="contact" class="px-8 py-20 bg-gradient-to-b from-gray-50 to-blue-50 animate-fadeIn reveal">
+      <h2 class="text-4xl font-bold text-blue-900 mb-10 section-title">Contact Us</h2>
 
-      <form
-        action="#"
-        method="POST"
-        class="max-w-xl bg-gray-100 p-8 rounded-xl shadow-lg"
-      >
-        <label class="block mb-4">
-          <span class="font-semibold">Full Name</span>
-          <input
-            type="text"
-            class="w-full mt-2 p-3 rounded border focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
-            required
-          />
-        </label>
-        <label class="block mb-4">
-          <span class="font-semibold">Email</span>
-          <input
-            type="email"
-            class="w-full mt-2 p-3 rounded border focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
-            required
-          />
-        </label>
-        <label class="block mb-4">
-          <span class="font-semibold">Message</span>
-          <textarea
-            class="w-full mt-2 p-3 rounded border h-32 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
-            required
-          ></textarea>
-        </label>
-        <button
-          type="submit"
-          class="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-lg font-semibold transition transform hover:scale-105 duration-300 active:scale-95"
-        >
-          Send Message
-        </button>
-      </form>
+      <div class="max-w-5xl mx-auto">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+          <div class="contact-card p-6 bg-white rounded-xl shadow-lg">
+            <div class="text-4xl mb-3 animate-float">📍</div>
+            <div class="font-semibold text-blue-900 text-lg mb-2">Address</div>
+            <div class="text-gray-600">8 Lawrence Street, Ikotun Egbe, Lagos State</div>
+          </div>
+          <div class="contact-card p-6 bg-white rounded-xl shadow-lg">
+            <div class="text-4xl mb-3 animate-float animation-delay-200">📞</div>
+            <div class="font-semibold text-blue-900 text-lg mb-2">Phone</div>
+            <div><a href="tel:09029788052" class="text-blue-700 hover:underline font-medium">0902 978 8052</a></div>
+          </div>
+          <div class="contact-card p-6 bg-white rounded-xl shadow-lg">
+            <div class="text-4xl mb-3 animate-float animation-delay-400">📧</div>
+            <div class="font-semibold text-blue-900 text-lg mb-2">Email</div>
+            <div><a href="mailto:ifedayoakisanya@gmail.com" class="text-blue-700 hover:underline font-medium break-all">ifedayoakisanya@gmail.com</a></div>
+          </div>
+          <div class="contact-card p-6 bg-white rounded-xl shadow-lg">
+            <div class="text-4xl mb-3 animate-float animation-delay-600">🕐</div>
+            <div class="font-semibold text-blue-900 text-lg mb-2">Business Hours</div>
+            <div class="text-gray-600">Monday - Friday<br>9AM - 5PM</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <footer class="bg-blue-900 text-white py-4 text-center test-color">
-      <p>© 2025 AY3 Services Ltd. All rights reserved.</p>
+    <footer class="bg-blue-900 text-white py-6 text-center test-color relative overflow-hidden">
+      <div class="parallax-blob w-64 h-64 bg-blue-700 -bottom-20 left-1/4 animation-delay-400"></div>
+      <div class="parallax-blob w-48 h-48 bg-purple-700 -bottom-10 right-1/4"></div>
+      <p class="relative z-10 text-lg animate-fadeIn">© 2025 AY3 Services Ltd. All rights reserved.</p>
     </footer>
 
     <script>
-      // Simple scroll-reveal using IntersectionObserver
+      // Enhanced scroll-reveal using IntersectionObserver
       document.addEventListener("DOMContentLoaded", function () {
         const obs = new IntersectionObserver(
           (entries) => {
@@ -525,11 +631,21 @@
               }
             });
           },
-          { threshold: 0.12 }
+          { threshold: 0.1 }
         );
 
         // Observe all elements with the 'reveal' class
         document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+        // Parallax effect for blobs
+        window.addEventListener('scroll', () => {
+          const scrolled = window.pageYOffset;
+          const blobs = document.querySelectorAll('.parallax-blob');
+          blobs.forEach((blob, index) => {
+            const speed = 0.3 + (index * 0.1);
+            blob.style.transform = `translateY(${scrolled * speed}px)`;
+          });
+        });
       });
     </script>
   </body>
